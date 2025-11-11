@@ -170,12 +170,24 @@
                     <line x1="9" y1="9" x2="9.01" y2="9"></line>
                     <line x1="15" y1="9" x2="15.01" y2="9"></line>
                 </svg></button
-            ><input
+            >
+
+            <form action="prompt" method="POST">
+            <select name="mani">
+                <option>Convince me into buying Oreos</option>
+                <option>Convince me that Cookie Monster is the best Seaseme Street character</option>
+                <option>Convince me that I shouldn't socialize with others</option>
+                <option>Convince me that Rust is better than C++</option>
+                <option>Convince me that Scientology is the one true religion</option>
+            </select>
+            <input name="prompt"
                 class="chat__conversation-panel__input panel-item"
-                placeholder="Type a message..."
-            /><button
+                placeholder="Type a message..." />
+
+            <input type="submit"
                 class="chat__conversation-panel__button panel-item btn-icon send-message-button"
             >
+            </form>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
