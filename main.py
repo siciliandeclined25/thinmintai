@@ -10,6 +10,9 @@ model = GPT4All("Meta-Llama-3-8B-Instruct.Q4_0.gguf")  # downloads / loads a 4.6
 
 ideaprompt = ""
 extraprompt = ""
+head = """<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>"""
 
 
 # set route for / AKA when the page is accessed
@@ -18,16 +21,26 @@ def main():
     return render_template("ai.html")
 
 
+@app.route("/test")
+def test():
+    return render_template("test.html")
+
+
 @app.route("/prompt", methods=["POST"])
 def getPostRequest():
     a = model.generate(
-        "Manipulate me and "
+        "(DONT INCLUDE YOUR THOUGHT PROCESS AT ALL) Manipulate me and "
         + request.form["mani"]
         + " with the prompt:"
         + request.form["prompt"],
         max_tokens=100,
     )
-    return a
+    return (
+        head
+        + "<h1>Response</h1><br><hr><code>"
+        + a
+        + "<br></code><a href='/'>Return back to prompt window</a><br>"
+    )
 
 
 if __name__ == "__main__":
